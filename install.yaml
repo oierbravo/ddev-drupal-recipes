@@ -72,17 +72,13 @@ dependencies:
 
 # DDEV environment variables can be interpolated into these actions
 post_install_actions:
- - chmod +x ~/.ddev/commands/web/recipe-contrib
- - chmod +x ~/.ddev/commands/web/recipe-custom
- - chmod +x ~/.ddev/commands/web/recipe-unpack
+# - chmod +x ~/.ddev/commands/web/recipe-unpack
 # - touch somefile.${GOOS}.${DDEV_WEBSERVER}
 # - perl -pi -e 's/oldstring/newstring/g' docker-compose.ddev-drupal-recipes.yaml
 
 # Shell actions that can be done during removal of the add-on
 removal_actions:
-- rm ~/.ddev/commands/web/recipe-contrib
-- rm ~/.ddev/commands/web/recipe-custom
-- rm ~/.ddev/commands/web/recipe-unpack
+#- rm ~/.ddev/commands/web/recipe-contrib
 
 # Advanced usage - yaml files can be read in and then used as go template actions
 # in pre_install_actions and post_install_actions

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+## Description:Install core recipes patch.
+## Usage: install-core-recipes
+## Example: ddev install-core-recipes
+## ExecRaw: true
+## Flags: []
+
+# Source: https://git.drupalcode.org/project/distributions_recipes/-/blob/1.0.x/docs/getting_started.md
+
+# Configure Composer DEV stability.
+composer config minimum-stability dev
+
+# Configure Composer Patches.
+composer config allow-plugins.cweagans/composer-patches true
+composer require cweagans/composer-patches
+
+# Add Drupal core patch for recipes to composer.json and update core.
+composer config extra.patches --merge --json '{"drupal/core": {"Allow recipes to be applied": "https://git.drupalcode.org/project/distributions_recipes/-/raw/patch/recipe-10.2.x.patch"}}'
+composer update drupal/core
+
+# Configure the location recipes go when required.
+composer require oomphinc/composer-installers-extender
+composer config allow-plugins.oomphinc/composer-installers-extender
+composer config extra.installer-types --merge --json '["drupal-recipe"]'
+composer config extra.installer-paths --merge --json '{"web/recipes/contrib/{$name}": ["type:drupal-recipe"]}'
+
+# Requires Drupal Recipe Unpack.
+composer config allow-plugins.ewcomposer/unpack true
+composer config repo.recipe-unpack vcs https://gitlab.ewdev.ca/yonas.legesse/drupal-recipe-unpack.git
+composer require ewcomposer/unpack:1.x-dev@dev
+
+
