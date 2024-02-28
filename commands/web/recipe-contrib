@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+## Description:Apply a Drupal Recipe that has been installed using composer.
+## Usage: recipe-contrib
+## Example: ddev recipe-contrib RECIPE
+
+DOCROOT_PATH="${DDEV_COMPOSER_ROOT}/${DOCROOT}"
+cd ${DOCROOT_PATH}
+
+php core/scripts/drupal recipe recipes/contrib/"$@"
+
+drush cr

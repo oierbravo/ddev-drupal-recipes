@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+## Description:Unpack recipe.
+## Usage: recipe-unpack
+## Example: ddev recipe-unpack organization/package-name
+
+cd ${DDEV_COMPOSER_ROOT}
+composer unpack "$@"
