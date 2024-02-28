@@ -1,10 +1,18 @@
-#!/usr/bin/env bash
+#!/bin/bash
+#ddev-generated
 ## Description:Apply a Drupal Recipe that has been installed using composer.
-## Usage: recipe-contrib
+## Usage: recipe-contrib [args]
 ## Example: ddev recipe-contrib RECIPE
+## ExecRaw: true
+## Flags: []
 
 DOCROOT_PATH="${DDEV_COMPOSER_ROOT}/${DOCROOT}"
 cd ${DOCROOT_PATH}
+
+if [ $# -eq 0 ] ; then
+  echo "You must provide a contrib recipe."
+  exit 1
+fi
 
 php core/scripts/drupal recipe recipes/contrib/"$@"
 

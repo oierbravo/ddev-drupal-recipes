@@ -1,7 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
+#ddev-generated
 ## Description:Unpack recipe.
-## Usage: recipe-unpack
+## Usage: recipe-unpack [args]
 ## Example: ddev recipe-unpack organization/package-name
+## ExecRaw: true
+## Flags: []
 
 cd ${DDEV_COMPOSER_ROOT}
 composer unpack "$@"
